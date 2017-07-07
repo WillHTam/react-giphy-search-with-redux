@@ -19,10 +19,6 @@ class App extends React.Component {
       selectedGif: null,
       modalIsOpen: false
     }
-
-    // this.handleTermChange = this.handleTermChange.bind(this)
-    // this sets the 'this' of handleTermChange to App and not onTermChange
-    // but we can also solve this problem by changing the handleTermChange to a fat arrow function and thus not introduce its own this, but t
   }
 
   openModal = (gif) => {
@@ -39,7 +35,10 @@ class App extends React.Component {
       })
   }
 
-  handleTermChange(term) {
+  // this.handleTermChange = this.handleTermChange.bind(this)
+  // this sets the 'this' of handleTermChange to App and not onTermChange
+  // but we can also solve this problem by changing the handleTermChange to a fat arrow function and thus not introduce its own this
+  handleTermChange = (term) => {
     console.log(term)
 
     const url = `http://api.giphy.com/v1/gifs/search?q=${term.replace(/\s/g, '+')}&api_key=dc6zaTOxFJmzC`
@@ -47,6 +46,7 @@ class App extends React.Component {
     // regex replaces any spaces in the searchbox with pluses for giphy
 
     request.get(url, (err, res) => {
+      console.log(res.body.data)
       this.setState({gifs: res.body.data})
     })
     // put the superagent request here within handleTermChange because it is receiving the term from SearchBar

@@ -14,7 +14,7 @@ class SearchBar extends React.Component {
     // initialize state with this.state, but when signalling to rerender, use this.setState()
     // only use this.state in a class constructor
     this.props.onTermChange(term)
-    // here we tell React that everytime it notices a change in input, it should fire an onChange event and pass the value (the search term) to onInputChnage()
+    // here we tell React that everytime it notices a change in input, it should fire an onChange event and pass the value (the search term) to onInputChange()
   }
 
   render () {

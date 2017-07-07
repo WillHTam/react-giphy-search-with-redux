@@ -7,9 +7,6 @@ const GifModal = (props) => {
         return <div></div>
     }
 
-    // need isOpen and onRequestClose for react modal
-    // onRequestClose takes a function, so it needs a handler from App and tied to closeModal method in App
-
   return (
     <Modal
       isOpen={props.modalIsOpen}

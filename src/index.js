@@ -37,7 +37,6 @@ class App extends React.Component {
     const url = `http://api.giphy.com/v1/gifs/search?q=${term.replace(/\s/g, '+')}&api_key=dc6zaTOxFJmzC`
 
     request.get(url, (err, res) => {
-      console.log(res.body.data)
       this.setState({gifs: res.body.data})
     })
   }

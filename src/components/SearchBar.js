@@ -5,6 +5,7 @@ class SearchBar extends React.Component {
     super()
     this.state = { term: '' }
   }
+  // From whence 'onTermChange'? Since it was a prop set on it in App, it has been inherited for use and to pass data by this component.
   onInputChange (term) {
     this.setState({term})
     this.props.onTermChange(term)

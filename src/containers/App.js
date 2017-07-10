@@ -1,30 +1,37 @@
-import React from 'react'
-import GifsTemp from '../components/GifsTemp'
-// Import connect to give a way pull Redux's state into React as props
-import { connect } from 'react-redux'
+import React from 'react';
+import GifsTemp from '../components/GifsTemp';
+import { connect } from 'react-redux';
+// import connect to link React and Redux, and to give a way to pull Redu'x state into React as props
 
-// Rendering GifsTemp and passing in gifs as props, but where does the gifs object come from? (see below)
+// Where does the gifs object come from? Line17
 class App extends React.Component {
-    render() {
-        return(
-            <div>
-                <GifsTemp gifs={ this.props.gif } />
-            </div>
-        )
-    }
-
+  render() {
+    return (
+      <div>
+        <GifsTemp gifs={ this.props.gifs } />
+      </div>
+    );
+  }
 }
 
-// This function is passed as first argument of 'connect' below
-    // This allows App component to subscribe to Redux store updates; when the store changes, mapStateToProps is called
-// mapStateToProps returns a plain object, which then becomes available on the App component as props
-//(which can then be passed down to GifsTem as this.props.gif)
+// mapStateToProps will be the first argument for connect
+// Connect lets the App component to subscribe to the Redux store update
+    // Whenver the store changes, mapStateToProps is called
+// mapStateToProps returns a plain object which becomes available to App as props
+    // Which can then be passed down to GifsTemp as this.props.gifs
 // Where do the gifs come from?
-// The combineReducers function in 'reducers/index.js' set the result of GifsReducer in the state with the gifs key
+    // In combineReducers, set the result of GifsReducer to the state with 'gifs' key
+    // Here in mapStateToProps, link 'gifs' from GifsReducer to this.props.gifs in App
 function mapStateToProps(state) {
-    return {
-        gifs: state.gifs
-    }
+  return {
+    gifs: state.gifs
+  };
 }
 
-export default connect(mapStateToProps)(App)
+// Here we are not exporting App, but instead the results of connect
+    // Wrapping <App /> with <Provider> in src/index.js made the Redux store available
+    // to connect()() calls within child components. This is how mapStateToProps can access the state
+// connect has two parentheses because it has two different function calls
+    // connect(mapStateToProps) returns a function
+    // then the second function is called immediately with App passed in as an argument
+export default connect(mapStateToProps)(App);

@@ -1,20 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-// The parameter ({gifs}) means that the function is expecting an object that has property gifs
-// Instead of getting the object then accessing object.gifs, access it directly
+// Using the parameter({gifs}) means that it pulls out the gifs key from whatever object it recieves, and then the gif
+    // variable is available for use in the function
+const GifsTemp = ({gifs}) => {
+  const gifItems = gifs.map((gif) => {
+    return(
+      <li key={gif.id}><img src={gif.url} /></li>
+    );
+  });
 
-const GifsTemp = ({ gifs }) => {
-    const gifItems = gifs.map((gif) => {
-        return(
-            <li key={gif.id}>
-                <img src={gif.url} alt=""/>
-            </li>
-        )
-    })
+  return (
+    <ul className="gif-list">{gifItems}</ul>
+  );
+};
 
-    return (
-        <ul className="gif-list">{gifItems}</ul>
-    )
-}
-
-export default GifsTemp
+export default GifsTemp;

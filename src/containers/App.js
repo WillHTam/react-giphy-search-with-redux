@@ -19,7 +19,7 @@ class App extends React.Component {
     return (
       <div>
         <SearchBar onTermChange={this.props.actions.requestGifs} />
-        <GifList gifs={ this.props.gif } />
+        <GifList gifs={ this.props.gifs } />
       </div>
     )
   }

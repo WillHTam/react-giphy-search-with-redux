@@ -11,7 +11,7 @@ const API_KEY = '&api_key=dc6zaTOxFJmzC'
 // action creator
 export function requestGifs(term = null) {
     // console.log(term)
-    const data = request.get(`${API_URL}${term.replace(/\s/g, '+')}${API_KEY}&limit=10`);
+    const data = request.get(`${API_URL}${term.replace(/\s/g, '+')}${API_KEY}&limit=15`);
     // the action
     return {
         type: REQUEST_GIFS,

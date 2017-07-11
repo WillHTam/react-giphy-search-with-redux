@@ -15,4 +15,9 @@ object. Requires a type.
 - Reducers make the changes. Take two arguments: previous state and an action,
 and return the next state as a new object. Similar to using 'Save As', never
 mutates the state directly but instead copies, modifies, and then returns it.
--
+- An action is a plain JS object that sends data from application to store
+    - Actions are fired whenever the state needs to change, and the switch statent in reducers 'catch' these actiosn so that they can update the store
+    - Require
+        1) The action itself - type & payload
+        2) Action type - const
+        3) Action creator - function that creates actions 

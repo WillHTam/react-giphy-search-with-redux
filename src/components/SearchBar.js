@@ -7,6 +7,7 @@ import React from 'react'
 class SearchBar extends React.Component {
 
     onInputChange(term) {
+        // remove state setter but leave this because this is how App will pass REQUEST_GIFS to SearchBar
         this.props.onTermChange(term)
     }
 

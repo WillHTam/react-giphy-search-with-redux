@@ -5,17 +5,21 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 // import all exported modules in index.js as single object 'Actions'. Gives access to all of action creators to hook into components
 import * as Actions from '../actions'
+// Can import GifList with no modifications since GifList already expects an array of gifs to be passed down as props
+    // Already map results of GifsReducer to App's props via mapStateToProps
+import GifList from '../components/GifList'
 import SearchBar from '../components/SearchBar'
 import '../styles/app.css'
 
-// Where does the gifs object come from? Line23
-// Pass requestGifs action creator via onTermChange prop.
+// Where does the gifs object come from? Line33
+// >> Pass requestGifs action creator via onTermChange prop.
     // Thus whenver onInputChange is fired by enter/removing text, action creator fires as well
 class App extends React.Component {
   render() {
     return (
       <div>
         <SearchBar onTermChange={this.props.actions.requestGifs} />
+        <GifList gifs={ this.props.gif } />
       </div>
     )
   }
@@ -36,12 +40,16 @@ class App extends React.Component {
     // Here in mapStateToProps, link 'gifs' from GifsReducer to this.props.gifs in App
 function mapStateToProps(state) {
   return {
-    gifs: state.gifs
+    gifs: state.gifs.data
   }
 }
 
-// How did APp recieve the requestGifs action creator?
-//
+// How did App recieve the requestGifs action creator?
+// We set this.props.actions on App by calling bindActionCreators
+// bindActionCreators takes a single object whose values are action creators, in this case,
+    // the Actions object imported fromm src/actions/index.js
+    // and wraps every action creator in a dispatch call so taht they can be invoked within our container
+    // this is how the app is notified there is a state change
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(Actions, dispatch)

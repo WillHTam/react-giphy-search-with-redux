@@ -21,3 +21,8 @@ mutates the state directly but instead copies, modifies, and then returns it.
         1) The action itself - type & payload
         2) Action type - const
         3) Action creator - function that creates actions 
+
+### The New Flow
+```
+App -> Action -> React-Promise Middleware -> Reducer -> Store -> Back to App
+```
